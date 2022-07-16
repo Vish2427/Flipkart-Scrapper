@@ -11,7 +11,7 @@ from datamongodb import MongoDBmanagement
 from Flipkartscrapping import FlipkratScrapper
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-
+from webdriver_manager.utils import ChromeType
 rows = {}
 collection_name = None
 
@@ -67,7 +67,7 @@ def index():
         expected_review = int(request.form['expected_review'])
         try:
             review_count = 0
-            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager().install(),
+            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),
                                                chrome_options=chrome_options)
             mongoClient = MongoDBmanagement(username='mongodb', password='mongodb')
             scrapper_object.openUrl("https://www.flipkart.com/")
@@ -109,7 +109,7 @@ def feedback():
     try:
         global collection_name
         if collection_name is not None:
-            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager().install(),
+            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),
                                                chrome_options=chrome_options)
             mongoClient = MongoDBmanagement(username='mongodb', password='mongodb')
             rows = mongoClient.findallRecords(db_name="Flipkart-Scrapper", collection_name=collection_name)

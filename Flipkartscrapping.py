@@ -5,7 +5,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
+from webdriver_manager.utils import ChromeType
 from repository_for_object import repositoryobject
 from selenium.webdriver.common.by import By
 
