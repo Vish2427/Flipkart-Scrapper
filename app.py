@@ -24,9 +24,11 @@ app = Flask(__name__)  # initialising the flask app with the name 'app'
 
 #For selenium driver implementation on heroku
 chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument("disable-dev-shm-usage")
+chrome_options.add_argument("--headless")
 
 #To avoid the time out issue on heroku
 class threadClass:
@@ -65,7 +67,7 @@ def index():
         expected_review = int(request.form['expected_review'])
         try:
             review_count = 0
-            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager().install(),
+            scrapper_object = FlipkratScrapper(executable_path=os.environ.get("CHROMEDRIVER_PATH"),
                                                chrome_options=chrome_options)
             mongoClient = MongoDBmanagement(username='mongodb', password='mongodb')
             scrapper_object.openUrl("https://www.flipkart.com/")
@@ -107,7 +109,7 @@ def feedback():
     try:
         global collection_name
         if collection_name is not None:
-            scrapper_object = FlipkratScrapper(executable_path=ChromeDriverManager().install(),
+            scrapper_object = FlipkratScrapper(executable_path=os.environ.get("CHROMEDRIVER_PATH"),
                                                chrome_options=chrome_options)
             mongoClient = MongoDBmanagement(username='mongodb', password='mongodb')
             rows = mongoClient.findallRecords(db_name="Flipkart-Scrapper", collection_name=collection_name)

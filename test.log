@@ -315,3 +315,7 @@
 2022-07-16 01:59:51,232:INFO:flipkrat.py:login popup handled
 2022-07-16 01:59:51,443:INFO:flipkrat.py:Search begins for idea
 2022-07-16 02:00:09,973:INFO:flipkrat.py:Data saved in scrapper file
+2022-07-16 18:15:07,159:INFO:flipkrat.py:Url hitted
+2022-07-16 18:15:07,312:INFO:flipkrat.py:login popup handled
+2022-07-16 18:15:07,502:INFO:flipkrat.py:Search begins for idea
+2022-07-16 18:15:41,578:INFO:flipkrat.py:Data saved in scrapper file
